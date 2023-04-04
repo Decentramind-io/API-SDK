@@ -6,7 +6,7 @@
     "contact": {
       "email": "info@decentramind.io"
     },
-    "description": "Decentramind.io API для взаимодействия с Decentramind.io Platform"
+    "description": "API for interacting with Decentramind.io Platform"
   },
   "servers": [
     {
@@ -16,9 +16,9 @@
   "paths": {
     "/auth": {
       "get": {
-        "summary": "Получение api_key",
+        "summary": "Getting the api_key",
         "operationId": "get-auth",
-        "description": "Вызов служит для авторизации на платформе Decentramind.io и получения токена авторизации api_key для всех последующих вызовов",
+        "description": "The call serves to authorize on the Decentramind.io platform and obtain the api_key authorization token for all subsequent calls.",
         "parameters": [],
         "responses": {
           "200": {
@@ -32,7 +32,7 @@
                     "api_key": {
                       "type": "string",
                       "minLength": 1,
-                      "description": "api_key пользователя"
+                      "description": "user's api_key"
                     }
                   }
                 },
@@ -67,7 +67,7 @@
         }
       ],
       "delete": {
-        "summary": "Удаление исполнителя",
+        "summary": "Remove node",
         "operationId": "delete-node-remove-hwid",
         "responses": {
           "200": {
@@ -77,20 +77,20 @@
             "$ref": "#/components/responses/response_auth_error"
           }
         },
-        "description": "Полностью удаляет исполнителя из системы Decentramind.io и снимает все задачи, связанные с ним.",
+        "description": "Completely removes the node from the Decentramind.io system and removes all tasks associated with it.",
         "tags": [
           "Nodes"
         ],
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
     },
     "/ping": {
       "get": {
-        "summary": "Пинг",
+        "summary": "Ping",
         "tags": [
           "General"
         ],
@@ -100,7 +100,7 @@
           }
         },
         "operationId": "get-ping",
-        "description": "Проверка доступности сервера API",
+        "description": "Checking API server availability.",
         "security": []
       }
     },
@@ -111,7 +111,7 @@
         }
       ],
       "get": {
-        "summary": "Получение информации об исполнителе",
+        "summary": "Getting information on a node",
         "tags": [
           "Nodes"
         ],
@@ -131,18 +131,18 @@
           }
         },
         "operationId": "get-node-get-hwid",
-        "description": "Получение технических характеристик исполнителя",
+        "description": "Getting node specifications",
         "parameters": [],
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
     },
     "/node/list": {
       "get": {
-        "summary": "Получение списка исполнителей, которыми владеет данный пользователь",
+        "summary": "Getting a list of nodes this user owns.",
         "tags": [
           "Nodes"
         ],
@@ -162,17 +162,17 @@
           }
         },
         "operationId": "get-node-list",
-        "description": "Получение списка исполнителей для владельца. Возможно только с api_key владельца оборудования.",
+        "description": "Obtaining a list of nodes for the owner. Only possible with api_key of node owner.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
     },
     "/node/telemetry/{hwid}": {
       "post": {
-        "summary": "Получение информации о загрузке оборудования",
+        "summary": "Getting telemetry data on node",
         "tags": [
           "Nodes"
         ],
@@ -198,7 +198,7 @@
           }
         },
         "operationId": "post-node-telemetry",
-        "description": "Возвращает данные по загрузке CPU, GPU, memory и т.д. для выбранного исполнителя и временного диапазона в формате csv. Доступно только с ключом владельца исполнителя.",
+        "description": "Returns telemetry data on CPU, GPU, memory, etc. utilization for the selected node and time range in csv format. Available only with node owner key.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -220,7 +220,7 @@
         },
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       },
@@ -232,7 +232,7 @@
     },
     "/user/nodes/list": {
       "get": {
-        "summary": "Получение списка исполнителей, свободных в данный момент",
+        "summary": "Getting a list of currently available nodes",
         "tags": [
           "User"
         ],
@@ -255,15 +255,15 @@
           }
         },
         "operationId": "get-user-nodes-list",
-        "description": "Запрос списка свободных исполнителей. Возвращает список исполнителей, доступных для постановки на них задачи.",
+        "description": "Getting a list of available nodes. Returns the list of nodes available for  running tasks.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       },
       "post": {
-        "summary": "Получение списка исполнителей, свободных в данный момент, с фильтрацией",
+        "summary": "Getting a list of available nodes with filtering",
         "operationId": "post-user-nodes-list",
         "responses": {
           "200": {
@@ -277,10 +277,10 @@
             }
           }
         },
-        "description": "Запрос списка свободных исполнителей с фильтрацией. Возвращает список исполнителей, доступных для постановки на них задачи.",
+        "description": "Getting a list of available nodes with filtering. Returns the list of nodes available for  running tasks.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ],
         "requestBody": {
@@ -291,7 +291,7 @@
               }
             }
           },
-          "description": "Все поля опциональны"
+          "description": "All fields are optional"
         },
         "tags": [
           "User"
@@ -300,7 +300,7 @@
     },
     "/user/tasks/add": {
       "post": {
-        "summary": "Добавление новой задачи",
+        "summary": "Adding a new task",
         "operationId": "post-user-tasks-add",
         "responses": {
           "200": {
@@ -317,7 +317,7 @@
             "$ref": "#/components/responses/response_auth_error"
           }
         },
-        "description": "Добавление задачи на исполнитель с указанным идентификатором",
+        "description": "Adding a task to the node with the specified identifier",
         "requestBody": {
           "content": {
             "application/json": {
@@ -326,14 +326,14 @@
               }
             }
           },
-          "description": "Описание создаваемой задачи:"
+          "description": "Description of the created task:"
         },
         "tags": [
           "User"
         ],
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
@@ -345,20 +345,20 @@
         }
       ],
       "delete": {
-        "summary": "Останов и удаление задачи",
+        "summary": "Stopping and deleting a task",
         "operationId": "delete-user-tasks-remove-taskid",
         "responses": {
           "200": {
             "$ref": "#/components/responses/response_ok"
           }
         },
-        "description": "Удаляет указанную задачу с исполнителя.",
+        "description": "Deletes the specified task from a node.",
         "tags": [
           "User"
         ],
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
@@ -370,9 +370,9 @@
         }
       ],
       "post": {
-        "summary": "Перезапуск задачи",
+        "summary": "Restarting a task",
         "operationId": "post-user-tasks-restart-taskid",
-        "description": "Останавливает задачу и запускает ее снова на том же исполнителе.",
+        "description": "Stops the task and starts it again on the same node.",
         "responses": {
           "200": {
             "$ref": "#/components/responses/response_ok"
@@ -383,14 +383,14 @@
         ],
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
     },
     "/user/tasks/list": {
       "get": {
-        "summary": "Получение списка запущенных задач для пользователя",
+        "summary": "Getting a list of running tasks for a user",
         "tags": [
           "User"
         ],
@@ -410,10 +410,10 @@
           }
         },
         "operationId": "get-user-tasks-list",
-        "description": "Возвращает список задач, запущенных пользователем с данным api_key",
+        "description": "Returns the list of tasks started by the user with the given api_key.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
@@ -425,7 +425,7 @@
         }
       ],
       "post": {
-        "summary": "Получение данных телеметрии для запущенной задачи",
+        "summary": "Getting telemetry data for a running task",
         "tags": [
           "User"
         ],
@@ -440,7 +440,7 @@
           }
         },
         "operationId": "post-user-tasks-telemetry-taskid",
-        "description": "Возвращает данные по загрузке CPU, GPU, memory и т.д. для выбранного задания и временного диапазона в формате csv. Доступно только с ключом пользователя, поставившего задание.",
+        "description": "Returns telemetry data on CPU, GPU, memory, etc. utilization for the selected task and time range in csv format. Available only with the key of the user who started the task.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -452,7 +452,7 @@
         },
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
@@ -464,7 +464,7 @@
         }
       ],
       "get": {
-        "summary": "Получение логов запущенной задачи",
+        "summary": "Getting the logs of a running task",
         "tags": [
           "User"
         ],
@@ -481,22 +481,22 @@
           }
         },
         "operationId": "get-user-tasks-log-taskid",
-        "description": "Возвращает логи, генерируемые пользовательским заданием, закодированные в base64.",
+        "description": "Returns the logs generated by the user's task, encoded in base64.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
     },
     "/user/tasks/default": {
       "get": {
-        "summary": "Операции с текущей задачей по-умолчанию",
+        "summary": "Operations with the current default task",
         "tags": [
           "User"
         ],
         "operationId": "get-user-tasks-default",
-        "description": "Получить описание задачи, которая выполняется, когда оборудование простаивает. Доступно только для владельца оборудования.",
+        "description": "Get a description of the task that is runned when the equipment is idle. Available only to the owner of the node.",
         "responses": {
           "200": {
             "description": "OK",
@@ -511,7 +511,7 @@
         },
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       },
@@ -523,7 +523,7 @@
             "$ref": "#/components/responses/response_ok"
           }
         },
-        "description": "Заменяет задачу, которая выполняется, когда оборудование простаивает. Запущенные в данный момент задачи будут остановлены и заменены на новую. Доступно только для владельца оборудования.",
+        "description": "Replaces a task that is running when the node is idle. Tasks currently running will be stopped and replaced by a new task. Available only to the owner of the node.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -540,7 +540,7 @@
     },
     "/apps/list": {
       "get": {
-        "summary": "Получение списка приложений",
+        "summary": "Getting a list of applications",
         "tags": [
           "Apps"
         ],
@@ -560,7 +560,7 @@
           }
         },
         "operationId": "get-apps-list",
-        "description": "Получение списка приложений"
+        "description": "Getting a list of applications"
       }
     },
     "/apps/get/{app_id}": {
@@ -570,7 +570,7 @@
         }
       ],
       "get": {
-        "summary": "Получение описания приложения по его app_id",
+        "summary": "Getting the app description by its app_id",
         "responses": {
           "200": {
             "description": "OK",
@@ -584,7 +584,7 @@
           }
         },
         "operationId": "get-apps-get-app_id",
-        "description": "Получение описания приложения по его app_id",
+        "description": "Getting the app description by its app_id",
         "tags": [
           "Apps"
         ]
@@ -592,7 +592,7 @@
     },
     "/user/tasks/addapptask": {
       "post": {
-        "summary": "Добавление новой задачи-приложения",
+        "summary": "Starting a new task-application",
         "tags": [
           "Apps",
           "User"
@@ -613,7 +613,7 @@
           },
           "description": ""
         },
-        "description": "Добавление новой задачи-приложения. Юзер получает список доступных приложений через /apps/list, из него берет app_id и список доступных параметров, заполняет необходимые параметры и формирует объект params. Опции монтирования пока не используются, но должны быть заполнены хотя бы пустыми строками."
+        "description": "Starting a new app. The user gets the list of available applications via /apps/list, takes the app_id and the list of available options from it, fills in the required parameters and forms a params object. The mount options are not used yet, but must be filled with empty lines."
       }
     },
     "/user/tasks/billing/{taskid}": {
@@ -625,11 +625,11 @@
           "schema": {
             "type": "string"
           },
-          "description": "Уникальный идентификатор задачи"
+          "description": "Unique task identifier"
         }
       ],
       "get": {
-        "summary": "Получение стоимости задачи",
+        "summary": "Getting the cost of the task",
         "tags": [
           "User"
         ],
@@ -646,10 +646,10 @@
           }
         },
         "operationId": "get-v1-user-tasks-billing-task_id",
-        "description": "Для продолжающейся задачи - текущая стоимость. Для уже оконченой - полная стоимость.",
+        "description": "For a running task - the current cost. For an already completed task - full cost.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
@@ -661,7 +661,7 @@
         }
       ],
       "post": {
-        "summary": "Получение биллинга по ноде",
+        "summary": "Getting billing by node",
         "operationId": "post-node-billing-hwid",
         "responses": {
           "200": {
@@ -675,10 +675,10 @@
             }
           }
         },
-        "description": "Возвращает для указанной ноды за указанный период истраченное электричество и заработанные токены",
+        "description": "Returns for the specified node for the specified period the electricity consumed and tokens earned",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ],
         "requestBody": {
@@ -697,7 +697,7 @@
     },
     "/user/tasks/history": {
       "post": {
-        "summary": "Получение списка задач для указанного пользователя",
+        "summary": "Getting the task list for the specified user",
         "operationId": "post-user-tasks-history",
         "responses": {
           "200": {
@@ -714,10 +714,10 @@
             }
           }
         },
-        "description": "По api_key определяется пользователь и по нему возвращаются все задания, которые налались или закончились в заданный промежуток времени",
+        "description": "Returns all tasks that started or finished in the specified time period by the user with specified api_key",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ],
         "requestBody": {
@@ -743,11 +743,11 @@
           "schema": {
             "type": "string"
           },
-          "description": "Уникальный идентификатор пользователя"
+          "description": "Unique user identifier"
         }
       ],
       "get": {
-        "summary": "Баланс пользователя",
+        "summary": "User balance",
         "tags": [
           "User"
         ],
@@ -766,15 +766,15 @@
         "operationId": "get-user-balance-user_id",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ],
-        "description": "Получение баланса в токенах"
+        "description": "Getting the balance in tokens"
       }
     },
     "/node/filter_data": {
       "get": {
-        "summary": "Получение данных для фильтрации при выборе доступных исполнителей",
+        "summary": "Obtaining data to filter when selecting available nodes",
         "tags": [
           "Nodes"
         ],
@@ -791,10 +791,10 @@
           }
         },
         "operationId": "get-node-filter_data",
-        "description": "Получение граничных условий для фильтра при поиске доступных исполнителей. Все поля объекта будут заполнены.",
+        "description": "Get the ranges for the filter when searching for available nodes. All fields of the object will be filled.",
         "security": [
           {
-            "Авторизация с помощью заголовка": []
+            "Authorization with an api_key header": []
           }
         ]
       }
@@ -803,7 +803,7 @@
   "components": {
     "schemas": {
       "api_response": {
-        "description": "Общий ответ API. Содержит код и текст ошибки.",
+        "description": "General API response. Contains error code and text.",
         "type": "object",
         "title": "",
         "x-examples": {
@@ -827,12 +827,12 @@
         ]
       },
       "full_node_description": {
-        "description": "Полное описание исполнителя.",
+        "description": "Full node description.",
         "type": "object",
         "properties": {
           "cpus": {
             "type": "array",
-            "description": "Список моделей CPU, установленных на исполнителе",
+            "description": "List of CPUs installed on the node.",
             "items": {
               "type": "object",
               "description": ""
@@ -840,7 +840,7 @@
           },
           "gpus": {
             "type": "array",
-            "description": "Список моделей GPU, установленных на исполнителе",
+            "description": "List of GPUs installed on the node.",
             "items": {
               "type": "object"
             }
@@ -853,7 +853,7 @@
           "hwid": {
             "type": "string",
             "minLength": 1,
-            "description": "Уникальный идентификатор исполнителя"
+            "description": "Unique node identifier"
           },
           "ip": {
             "type": "string",
@@ -863,11 +863,11 @@
           "network": {
             "type": "string",
             "minLength": 1,
-            "description": "Характеристики подключения к сети"
+            "description": "Network connection speed"
           },
           "ram": {
             "type": "number",
-            "description": "Память исполнителя в Мб"
+            "description": "Node RAM in Mb"
           }
         },
         "required": [
@@ -908,15 +908,15 @@
         "properties": {
           "image": {
             "type": "string",
-            "description": "Название образа в Decentramind.io Docker Registry"
+            "description": "Image name in Decentramind.io Docker Registry."
           },
           "params": {
             "type": "object",
-            "description": "Параметры для передачи в образ, закодировано в base64"
+            "description": "Parameters to send to the image."
           },
           "hwid": {
             "type": "string",
-            "description": "Уникальный идентификатор оборудования"
+            "description": "Unique node identifier"
           }
         },
         "required": [
@@ -932,19 +932,19 @@
           "timestamp_from": {
             "type": "string",
             "minLength": 1,
-            "description": "Начало временного диапазона в формате ISO-8601 (https://tools.ietf.org/html/rfc3339#section-5.6)",
+            "description": "Start of time range in ISO-8601 format (https://tools.ietf.org/html/rfc3339#section-5.6)",
             "format": "date-time"
           },
           "timestamp_to": {
             "type": "string",
             "minLength": 1,
-            "description": "Окончание временного диапазона в формате ISO-8601 (https://tools.ietf.org/html/rfc3339#section-5.6)",
+            "description": "End of time range in ISO-8601 format (https://tools.ietf.org/html/rfc3339#section-5.6)",
             "format": "date-time"
           },
           "data_source": {
             "type": "string",
             "minLength": 1,
-            "description": "Тип запрашиваемых данных",
+            "description": "Type of data requested",
             "enum": [
               "cpu",
               "gpu",
@@ -961,27 +961,27 @@
       "task_description": {
         "title": "task_description",
         "type": "object",
-        "description": "Описание запущенной задачи.",
+        "description": "Running task description.",
         "properties": {
           "taskid": {
             "type": "string",
-            "description": "Уникальный идентификатор задачи"
+            "description": "Unique task identifier"
           },
           "hwid": {
             "type": "string",
-            "description": "Уникальный идентификатор исполнителя"
+            "description": "Unique node identifier"
           },
           "image": {
             "type": "string",
-            "description": "Путь к образу в Decentramind.io Docker Regsitry"
+            "description": "Image path in Decentramind.io Docker Regsitry"
           },
           "params": {
             "type": "string",
-            "description": "Параметры для передачи в образ docker, закодировано в base64"
+            "description": "Parameters to pass to docker image"
           },
           "state": {
             "type": "string",
-            "description": "Текущее состояние задачи: 1 - неизвестно, 2 - подготовка, 3 - запущена, 4 - остановлена, 5 - ошибка",
+            "description": "Current state of the task: 1 - unknown, 2 - preparation, 3 - started, 4 - stopped, 5 - error",
             "enum": [
               "1",
               "2",
@@ -995,7 +995,7 @@
           },
           "ip": {
             "type": "string",
-            "description": "IPv4-адрес задачи"
+            "description": "Task IPv4 address"
           }
         },
         "required": [
@@ -1009,7 +1009,7 @@
         ]
       },
       "user_node_description": {
-        "description": "Полное описание исполнителя для пользователя",
+        "description": "Full node description for the user",
         "type": "object",
         "x-examples": {
           "example-1": {
@@ -1029,7 +1029,7 @@
         "properties": {
           "cpus": {
             "type": "array",
-            "description": "Список моделей CPU, установленных на исполнителе",
+            "description": "List of CPUs installed on the node.",
             "items": {
               "type": "object",
               "description": ""
@@ -1037,7 +1037,7 @@
           },
           "gpus": {
             "type": "array",
-            "description": "Список моделей GPU, установленных на исполнителе",
+            "description": "List of GPUs installed on the node.",
             "items": {
               "type": "object"
             }
@@ -1045,16 +1045,16 @@
           "hwid": {
             "type": "string",
             "minLength": 1,
-            "description": "Уникальный идентификатор исполнителя"
+            "description": "Unique node identifier"
           },
           "network": {
             "type": "string",
             "minLength": 1,
-            "description": "Характеристики подключения к сети"
+            "description": "Network connection speed"
           },
           "ram": {
             "type": "number",
-            "description": "Память исполнителя в Мб"
+            "description": "Node RAM in Mb"
           }
         },
         "required": [
@@ -1074,7 +1074,7 @@
           },
           "task_type": {
             "type": "number",
-            "description": "Тип задачи, исполняемой в данный момент на исполнителе: 0 - нет задачи, 1 - задача по умолчанию, 2 - пользовательская задача",
+            "description": "Type of task currently running on the node: 0 - no task, 1 - default task, 2 - custom task",
             "enum": [
               0,
               1,
@@ -1087,7 +1087,7 @@
               "active",
               "down"
             ],
-            "description": "Состояние подключения оборудования"
+            "description": "Node connection status"
           }
         },
         "required": [
@@ -1095,7 +1095,7 @@
           "task_type",
           "state"
         ],
-        "description": "Описание оборудования для владельца"
+        "description": "Node description for the owner"
       },
       "task_logs": {
         "title": "task_logs",
@@ -1103,11 +1103,11 @@
         "properties": {
           "taskid": {
             "type": "string",
-            "description": "Уникальный идентификатор задачи"
+            "description": "Unique node identifier"
           },
           "logs_b64": {
             "type": "string",
-            "description": "Логи, закодированные в base64"
+            "description": "Base64-encoded logs"
           }
         },
         "required": [
@@ -1121,11 +1121,11 @@
         "properties": {
           "image": {
             "type": "string",
-            "description": "Название образа в Decentramind.io Docker Registry"
+            "description": "Image name in Decentramind.io Docker Registry"
           },
           "params": {
             "type": "string",
-            "description": "Параметры для передачи в образ, закодировано в base64"
+            "description": "Parameters to transfer to the task"
           }
         },
         "required": [
@@ -1147,12 +1147,12 @@
             "type": "object"
           }
         },
-        "description": "Описание приложения. params - объект json, описывающий список применимых/ожидаемых в приложении параметров."
+        "description": "Application description. Params is a json object describing the list of applicable/expected parameters in the application."
       },
       "fs_options_description": {
         "title": "fs_options_description",
         "type": "object",
-        "description": "Описание опций для монтирования внешних ФС к контейнеру",
+        "description": "Description of the options for mounting external FS to the container",
         "properties": {
           "fs_type": {
             "type": "string"
@@ -1182,20 +1182,20 @@
             "$ref": "#/components/schemas/fs_options_description"
           }
         },
-        "description": "Модель для описания новой задачи-приложения. params - объект json, содержащий параметры из app_description.params и заполненные юзером значения."
+        "description": "Description of the task-application being created. params - json object containing parameters from app_description.params and values filled by user."
       },
       "billing_resp": {
         "title": "billing_resp",
         "type": "object",
-        "description": "Описывает стоимость в монетках и Вт",
+        "description": "Describes the value in tokens and watts",
         "properties": {
           "power_draw_w": {
             "type": "number",
-            "description": "Энергопотребление, Вт"
+            "description": "Power consumption, W"
           },
           "tokens": {
             "type": "number",
-            "description": "Затраты или прибыль в токенах"
+            "description": "Cost or profit in tokens"
           }
         },
         "required": [
@@ -1220,42 +1220,42 @@
         "title": "filter_data",
         "type": "object",
         "x-examples": {},
-        "description": "Источник данных для фильтра при поиске свободной ноды",
+        "description": "Data source for the filter when searching for a free node",
         "properties": {
           "ram_size_min": {
             "type": "integer",
-            "description": "Минимум размера ОЗУ"
+            "description": "Min RAM"
           },
           "ram_size_max": {
             "type": "integer",
-            "description": "Максимум размера ОЗУ"
+            "description": "Max RAM"
           },
           "hashrate_min": {
             "type": "integer",
-            "description": "Минимум хэшрейта"
+            "description": "Min hasrate"
           },
           "hashrate_max": {
             "type": "integer",
-            "description": "Максимум хэшрейта"
+            "description": "Max hashrate"
           },
           "gpu_count_min": {
             "type": "integer",
-            "description": "Минимум кол-ва GPU"
+            "description": "Min GPU count"
           },
           "gpu_count_max": {
             "type": "integer",
-            "description": "Максимум кол-ва GPU"
+            "description": "Max GPU count"
           },
           "gpus_dict": {
             "type": "array",
-            "description": "Список моделей GPU",
+            "description": "GPU models list",
             "items": {
               "type": "string"
             }
           },
           "cpus_dict": {
             "type": "array",
-            "description": "Список моделей CPU",
+            "description": "CPU models list",
             "items": {
               "type": "string"
             }
@@ -1269,18 +1269,18 @@
         "properties": {
           "balance": {
             "type": "number",
-            "description": "Баланс токенов, доступных для постановки задачи"
+            "description": "User balance in tokens"
           },
           "withdrawable_balance": {
             "type": "number",
-            "description": "Баланс токенов, доступных для вывода из системы"
+            "description": "Balance of tokens available for withdrawal"
           }
         }
       }
     },
     "responses": {
       "response_ok": {
-        "description": "Общий ответ API.",
+        "description": "General API response.",
         "content": {
           "application/json": {
             "schema": {
@@ -1298,7 +1298,7 @@
         }
       },
       "response_auth_error": {
-        "description": "Ошибка авторизации. Предоставлен неверный api_key, логин или пароль.",
+        "description": "Authorization error. Incorrect api_key, login or password was provided.",
         "content": {
           "application/json": {
             "schema": {
@@ -1317,11 +1317,11 @@
       }
     },
     "securitySchemes": {
-      "Авторизация с помощью заголовка": {
+      "Authorization with an api_key header": {
         "name": "api-key",
         "type": "apiKey",
         "in": "header",
-        "description": "api-key это секрет, авторизующий пользователя на Decentramind.io. Получить его можно из /v1/auth."
+        "description": "api-key is the secret that authorizes the user on Decentramind.io. You can get it from /v1/auth."
       },
       "Basic HTTP Auth": {
         "type": "http",
@@ -1336,7 +1336,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "Идентификатор исполнителя. Можно получить в /v1/node/list",
+        "description": "The identifier of the node. Available in /v1/node/list",
         "required": true
       },
       "taskid": {
@@ -1346,7 +1346,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "Уникальный идентификатор задачи"
+        "description": "Unique node identifier"
       },
       "app_id": {
         "name": "app_id",
@@ -1355,7 +1355,7 @@
         "schema": {
           "type": "string"
         },
-        "description": "Идентификатор приложения"
+        "description": "Unique app identifier"
       }
     }
   },
@@ -1378,7 +1378,7 @@
   ],
   "security": [
     {
-      "Авторизация с помощью заголовка": []
+      "Authorization with an api_key header": []
     },
     {
       "Basic HTTP Auth": []
