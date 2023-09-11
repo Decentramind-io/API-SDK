@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://megamind.network/api/v1"
+      "url": "https://api.decentramind.io/api/v1"
     }
   ],
   "paths": {
